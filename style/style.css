@@ -18,10 +18,11 @@
     border: none;
     background: transparent;
     transition: .2s ease-in-out;
+    color: rgb(1, 146, 35);
 }
 
 #edit_btn:hover{
-    color: rgb(1, 146, 35);
+
     transform: scale(1.2);
 }
 
@@ -30,9 +31,10 @@
     border: none;
     background: transparent;
     transition: .2s ease-in-out;
+    color: red;
 }
 
 #del_btn:hover{
-    color: red;
+    filter: saturate(0);
     transform: scale(1.2);
 }

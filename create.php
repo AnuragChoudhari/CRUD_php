@@ -25,43 +25,52 @@ $conn = mysqli_connect($host, $user, $pass, $db);
 <body>
     <div class="ui container" id="main_container">
         <h1 class="ui header">
-            Create User
+        Create User      <i class="ui user plus icon"></i>
         </h1>
-
-        <form class="ui form" action="" method="post">
    
-                <div class="field">
-                    <label>ID</label>
-                    <input required type="text" name="user_id">
-                </div>
-                <div class="field">
-                    <label>Name</label>
-                    <input required type="text" name="user_name">
-                </div>
+        <form class="ui form" action="" method="post">
+
+            <div class="field">
+                <label>ID</label>
+                <input required type="text" name="user_id">
+            </div>
+            <div class="field">
+                <label>Name</label>
+                <input required type="text" name="user_name">
+            </div>
 
 
-       
-             <button class="ui button" type="submit" name="sb_btn">Create user</button>
+
+            <button class="ui primary button" type="submit" name="sb_btn">Create user</button>
         </form>
     </div>
 </body>
 
 </html>
 
+
 <?php
-    if(isset($_POST['sb_btn'])){
-        $user_name = $_POST['user_name'];
-        $user_id = $_POST['user_id'];
-        $sql2 = "INSERT INTO test_users VALUES('$user_id', '$user_name')";
+if (isset($_POST['sb_btn'])) {
+    $user_name = $_POST['user_name'];
+    $user_id = $_POST['user_id'];
+    $sql2 = "INSERT INTO test_users VALUES('$user_id', '$user_name')";
 
-        $res = mysqli_query($conn, $sql2);
+    $res = mysqli_query($conn, $sql2);
 
-        if($res){
-            header("Location: index.php");
-        }
-        else{
-            echo "User already exists!";
-        }
+    if ($res) {
 
+        header("Location: index.php");
+
+    } else {
+        echo "<script>
+            Swal.fire({
+          title: 'Error!',
+          text: 'User id already exists!',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
+        </script>
+        ";
     }
+}
 ?>

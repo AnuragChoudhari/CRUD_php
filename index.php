@@ -7,6 +7,7 @@
  $conn = mysqli_connect($host, $user, $pass, $db);
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,19 +22,24 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
+
+
+
 <body>
     <div class="ui container" id="main_container">
         <h1 class="ui header">CRUD Operations</h1>
-        <a href="create.php">Create User</a>
+        <a href="create.php"><i class="ui user plus icon"></i> Create User</a>
+        <p></p>
         <div id="table_container">
             <form action="edit_redirect.php" method="get">
                 <table class="ui celled table">
                     <thead>
                         <tr>
+                            <th>Dp</th>
                             <th>Id</th>
                             <th>Name</th>
-                            <th>Edit User</th>
-                            <th>Delete User</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,10 +53,11 @@
                             while ($row = mysqli_fetch_array($res)) {
                         ?>
                                 <tr>
+                                    <td><i class="ui user icon"></i></td>
                                     <td><?php echo $row["id"] ?></td>
                                     <td><?php echo $row["name"] ?></td>
                                     <td><button id="edit_btn" name="edit_btn" value="<?php echo $row['id']; ?>"><i class="ui edit icon"></i></button></td>
-                                    <td><button id="del_btn" name="del_btn" value="<?php echo $row['id']; ?>"><i class="ui delete icon"></i></button></td>
+                                    <td><button onclick="del_user()" id="del_btn" name="del_btn" value="<?php echo $row['id']; ?>"><i class="ui delete icon"></i></button></td>
                                 </tr>
                         <?php
                             }
@@ -67,6 +74,24 @@
 </html>
 
 
+<!-- <script>
+    const del_id = document.getElementById('del_btn').value;
+    function del_user(){
+        const xhr = new XMLHttpRequest();
 
+        xhr.open("POST", "del.php?q="+del_id, true);
 
+        xhr.onload = function(){
+            document.querySelector('p').innerHTML = this.responseText;
+        }
+
+        xhr.send();
+        Swal.fire({
+                       title: 'Success!',
+                       text: 'Profile Created!',
+                       icon: 'success',
+                       confirmButtonText: 'OK'
+                   });
+    }
+</script> -->
 

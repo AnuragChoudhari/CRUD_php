@@ -21,19 +21,15 @@ if (isset($_GET['del_btn'])) {
     $delBtnValue = $_GET['del_btn'];
 
 
-
-        $sql3 = "DELETE FROM test_users WHERE id='$delBtnValue'";
-        $res3 = mysqli_query($conn,$sql3);
-        if($res3){
-            echo "True";
-            header("Location: index.php");
-            exit();
-        }
-        else{
-            echo "False";
-        }
-    
-
-
+    $sql3 = "DELETE FROM test_users WHERE id='$delBtnValue'";
+    $res3 = mysqli_query($conn,$sql3);
+    if($res3){
+        echo "True";
+        header("Location: index.php");
+        exit();
+    }
+    else{
+        echo "False";
+    }
 }
 ?>
